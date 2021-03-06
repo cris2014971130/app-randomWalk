@@ -3,12 +3,13 @@ package proyectRandomWalk;
 import java.util.ArrayList;
 
 public class Main4 {
-
+	//se crean ahora tres listas, una para posicion en X, otra en Y, y la otra en Z.
 	ArrayList<Double> listAleatorioX;
 	ArrayList<Double> listAleatorioY;
 	ArrayList<Double> listAleatorioZ;
 
 	public Main4() {
+		//se inicializan las listas y las posiciones. Se toma el tiempo de inicio del proceso
 		listAleatorioX= new ArrayList<>();
 		listAleatorioY= new ArrayList<>();
 		listAleatorioZ= new ArrayList<>();
@@ -21,8 +22,8 @@ public class Main4 {
 		double tiempo=0;
 		int reintentos=0;
 		int cumplio=0;
-		System.out.println("obteniendo resultado");
-		while(isFind==false|| reintentos>=1){
+		//al igual que el anterior se solicita el numero aleatorio y dependiendo de la probabilidad aumenta o disminuye su posición
+		while(isFind==false){
 			listAleatorioX.add(Math.random());
 			listAleatorioY.add(Math.random());
 			listAleatorioZ.add(Math.random());
@@ -41,12 +42,15 @@ public class Main4 {
 			}else {
 				posRanaZ--;
 			}
+			//Imprime la posición en la que se encuentra la rana. Y cuando la encuentra calcula el tiempo tardado
 			System.out.println(posRanaX +","+posRanaY+","+posRanaZ);
 			if(posRanaX==45 && posRanaY==23 && posRanaZ==17) {
 				isFind=true;
 				long fin = System.currentTimeMillis();
 				tiempo = (double) ((fin - inicio)/1000);
 			}
+			//este if le pone un limite a los pasos para que no se alejen demasiado del punto solicitado.
+			//Eso evita que la memoria RAM se llene sin llegar a encontrarlo
 			if(posRanaX>50|| posRanaX<-50) {
 				posRanaX=0;
 			}
@@ -62,9 +66,9 @@ public class Main4 {
 			}
 			contador++;
 		}
+		//Al final muestra los saltos que hizo la rana y la posicion en la que quedo
 		System.out.println("La rana en "+ contador+ " movimientos llego hasta la posicion "+posRanaX+","+posRanaY
 				+" y con un tiempo de " +tiempo);
-		System.out.println("y se realizaron "+reintentos+" reintots para lograr este resultado");
 	}
 
 	public static void main(String[] args) {
